@@ -1,0 +1,21 @@
+{
+    "name": "MS.App",
+    "rootNamespace": "MS.App",
+    "references": [
+        "GUID:b74b7ee552d36cf458940d77e84c3373",
+        "GUID:dcc9ab4f1abee08459fe468ddc06f28f",
+        "GUID:e1636de453320bf45a6a9fec3e09dfe2",
+        "GUID:9f87c1c0bd73a18488b091c76136b369",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:c43fba2210c55dd40926c660f032a927"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

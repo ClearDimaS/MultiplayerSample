@@ -1,0 +1,21 @@
+{
+    "name": "MS.GameSession",
+    "rootNamespace": "MS.GameSession",
+    "references": [
+        "GUID:b74b7ee552d36cf458940d77e84c3373",
+        "GUID:c5056655489f62d43ae7331fb7e2f1c8",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:d9d8635f8670c0c44ba7a8140f7ac7b9",
+        "GUID:c43fba2210c55dd40926c660f032a927"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
