@@ -1,6 +1,7 @@
 using Codice.CM.Triggers;
 using Fusion;
 using FusionExamples.Tanknarok;
+using MS.Core;
 using MS.GameSession;
 using MS.Level;
 using System.Collections;
@@ -18,10 +19,8 @@ namespace MS.Player
     }
 
     [RequireComponent(typeof(NetworkCharacterControllerPrototype))]
-    public class Player : NetworkBehaviour, ICanTakeDamage, IPlayer
+    public class Player : NetworkBehaviourDI, ICanTakeDamage, IPlayer
     {
-        [Inject] private IShooter shooter;
-
         public const byte MAX_HEALTH = 100;
 
         public enum State
@@ -32,6 +31,11 @@ namespace MS.Player
             Active,
             Dead
         }
+
+        [Inject] private IShooter shooter;
+        [Inject] private GameSessionManager gameSessionManager;
+        [Inject] private LevelManager levelManager;
+        [Inject] private IPlayerManager playerManager;
 
         [Header("Visuals")]
         [SerializeField] private Material[] playerMaterials;
@@ -88,10 +92,6 @@ namespace MS.Player
 
         public NetworkObject NT_Object => Object;
 
-        private GameSessionManager gameSessionManager;
-        private LevelManager levelManager;
-        private IPlayerManager playerManager;
-
         private int playerID;
         private NetworkCharacterControllerPrototype cc;
         private Collider[] overlaps = new Collider[1];
@@ -100,21 +100,14 @@ namespace MS.Player
         private Vector2 lastMoveDirection; // Store the previous direction for correct hull rotation
         private float respawnInSeconds = -1;
 
-        private void Awake()
+        protected override void OnAwake()
         {
+            base.OnAwake();
             cc = GetComponent<NetworkCharacterControllerPrototype>();
             collider = GetComponentInChildren<Collider>();
             hitBoxRoot = GetComponent<HitboxRoot>();
         }
-
-        [Inject]
-        void Construct(GameSessionManager gameSessionManager, LevelManager levelManager, IPlayerManager playerManager) 
-        {
-            this.gameSessionManager = gameSessionManager;
-            this.levelManager = levelManager;
-            this.playerManager = playerManager;
-        }
-
+ 
         public void InitNetworkState(byte maxLives)
         {
             state = State.New;

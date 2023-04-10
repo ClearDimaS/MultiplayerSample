@@ -16,7 +16,7 @@ namespace MS.GameSession
         MATCH
     }
 
-    public class GameSessionManager : NetworkBehaviour, IStateAuthorityChanged
+    public class GameSessionManager : NetworkBehaviourDI, IStateAuthorityChanged
     {
         [Inject] private DiContainer diContainer;
         [Inject] private IPlayerManager playerManager;

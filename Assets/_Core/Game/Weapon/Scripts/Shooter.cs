@@ -1,10 +1,11 @@
 ﻿using Fusion;
+using MS.Core;
 using System;
 using UnityEngine;
 
 namespace MS.Player
 {
-    public class Shooter : NetworkBehaviour, IShooter
+    public class Shooter : NetworkBehaviourDI, IShooter
     {
         [SerializeField] private Player player;
         [SerializeField] private Weapon weapon;

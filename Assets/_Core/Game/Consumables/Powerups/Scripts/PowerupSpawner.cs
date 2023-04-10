@@ -1,4 +1,5 @@
 using Fusion;
+using MS.Core;
 using MS.Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,7 +10,7 @@ namespace FusionExamples.Tanknarok
 	/// Powerups are spawned by the LevelManager and, when picked up, changes the
 	/// current weapon of the tank.
 	/// </summary>
-	public class PowerupSpawner : NetworkBehaviour, IConsumable
+	public class PowerupSpawner : NetworkBehaviourDI, IConsumable
 	{
 		[SerializeField] private PowerupElement[] _powerupElements;
 		[SerializeField] private Renderer _renderer;

@@ -161,7 +161,8 @@
         "MS.Player",
         "MS.Level",
         "MS.Weapon",
-        "MS.Consumables"
+        "MS.Consumables",
+        "MS.Core"
     ],
     "UseSerializableDictionary": true,
     "NullChecksForNetworkedProperties": true,

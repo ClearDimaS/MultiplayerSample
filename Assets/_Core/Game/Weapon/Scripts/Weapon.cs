@@ -1,10 +1,11 @@
 ﻿using Fusion;
+using MS.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MS.Player
 {
-    public class Weapon : NetworkBehaviour
+    public class Weapon : NetworkBehaviourDI
     {
         [SerializeField] private Transform[] _gunExits;
         [SerializeField] private Projectile _projectilePrefab; // Networked projectile
@@ -14,7 +15,6 @@ namespace MS.Player
         private int _gunExit;
         private float _visible;
         private bool _active;
-        private List<ParticleSystem> _muzzleFlashList = new List<ParticleSystem>();
 
         public float delay => _rateOfFire;
         public bool isShowing => _visible >= 1.0f;

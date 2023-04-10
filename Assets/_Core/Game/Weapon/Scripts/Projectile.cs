@@ -1,9 +1,10 @@
 ﻿using Fusion;
+using MS.Core;
 using UnityEngine;
 
 namespace MS.Player
 {
-    public abstract class Projectile : NetworkBehaviour, IPredictedSpawnBehaviour
+    public abstract class Projectile : NetworkBehaviourDI, IPredictedSpawnBehaviour
     {
         private Vector3 _interpolateFrom;
         private Vector3 _interpolateTo;

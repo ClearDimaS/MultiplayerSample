@@ -1,5 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
+using MS.Core;
 using MS.GameSession;
 using MS.Level;
 using System;
@@ -14,7 +15,7 @@ namespace MS.Player
     /// Handle player input by responding to Fusion input polling, filling an input struct and then working with
     /// that input struct in the Fusion Simulation loop.
     /// </summary>
-    public class InputController : NetworkBehaviour, INetworkRunnerCallbacks
+    public class InputController : NetworkBehaviourDI, INetworkRunnerCallbacks
     {
         [Inject] private GameSessionManager gameSessionManager;
 

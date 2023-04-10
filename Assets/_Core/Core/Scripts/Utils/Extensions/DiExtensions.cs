@@ -11,10 +11,10 @@ namespace MS.Core
         public static void InjectContexts(this DiContainer diContainer, GameObject gameObject)
         {
             IEnumerable<MonoBehaviour> monos = gameObject.GetComponentsInChildren<GameObjectContext>(true);
-            foreach (var item in monos)
+/*            foreach (var item in monos)
             {
                 diContainer.Inject(item);
-            }
+            }*/
         }
 
         public static void InjectMonos(this DiContainer diContainer, GameObject gameObject)
