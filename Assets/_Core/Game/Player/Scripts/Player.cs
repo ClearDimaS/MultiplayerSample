@@ -86,7 +86,7 @@ namespace MS.Player
         public GameObject GameObject => gameObject;
         public Vector3 velocity => cc.Velocity;
         public Quaternion hullRotation => hull.rotation;
-
+        public int CoinsCount => (int)coins;
         public int PlayerID => playerID;
 
         public NetworkObject NT_Object => Object;
@@ -236,6 +236,8 @@ namespace MS.Player
         {
             if (!isActivated || !invulnerabilityTimer.Expired(Runner))
                 return;
+            if (state == State.Dead)
+                return;
 
             //Don't damage yourself
             var attackingPlayer = playerManager.Get(attacker);
@@ -255,7 +257,7 @@ namespace MS.Player
                 if (lives > 0)
                     Respawn(respawnTime);
 
-                gameSessionManager.OnPlayerDeath();
+                gameSessionManager.OnPlayerDeath(this);
             }
             else
             {

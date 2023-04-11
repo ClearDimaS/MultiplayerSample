@@ -6,6 +6,7 @@ using MS.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,8 @@ namespace MS.Player
 
         private static List<IPlayer> allPlayers = new List<IPlayer>();
         private Queue<IPlayer> playerQueue = new Queue<IPlayer>();
+
+        private HashSet<IPlayer> deadPlayers = new HashSet<IPlayer>();
 
         private void Awake()
         {
@@ -48,6 +51,7 @@ namespace MS.Player
                 var player = playerQueue.Dequeue();
                 cameraStrategy.AddTarget(player.GameObject);
                 player.Respawn(0);
+                allPlayers.Add(player);
             }
         }
 
@@ -84,6 +88,17 @@ namespace MS.Player
         private void RespawnAll()
         {
 
+        }
+
+        public void MarkPlayerDead(IPlayer player)
+        {
+            if(!deadPlayers.Contains(player))
+                deadPlayers.Add(player);
+        }
+
+        public IPlayer[] GetAlivePlayers()
+        {
+            return allPlayers.Where(x => !deadPlayers.Contains(x)).ToArray();
         }
     }
 }

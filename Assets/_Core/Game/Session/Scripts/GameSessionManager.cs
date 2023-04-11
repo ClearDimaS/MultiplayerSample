@@ -3,7 +3,9 @@ using MS.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -18,13 +20,15 @@ namespace MS.GameSession
 
     public class GameSessionManager : NetworkBehaviourDI, IStateAuthorityChanged
     {
+        [Inject] private PanelsManager panelsManager;
         [Inject] private DiContainer diContainer;
         [Inject] private IPlayerManager playerManager;
+        [Inject] private GameData gameData;
 
         [SerializeField] private GameObject playerPrefab;
 
         private ILevelManager levelManager;
-        private const int MAX_LIVES = 3;
+        private const int MAX_LIVES = 1;
 
         public PlayState PlayState { get; private set; }
 
@@ -85,13 +89,23 @@ namespace MS.GameSession
             levelManager.LoadLevel(nextLevelIndex);
         }
 
-        public void OnPlayerDeath()
+        public void OnPlayerDeath(IPlayer player)
         {
             Debug.Log($"player dead!");
+            playerManager.MarkPlayerDead(player);
+            var remaining = playerManager.GetAlivePlayers();
+            Debug.Log($"remaining: {remaining.Length}");
+            if (remaining.Length == 1)
+            {
+                gameData.WinnerName = $"Player_{remaining.First().PlayerID}";
+                gameData.CoinsCount = remaining.First().CoinsCount;
+                panelsManager.ShowPanel<GameOverPanel>();
+            }
         }
 
         public void Quit()
         {
+            Camera.main.transform.parent = null;
             NetworkRunner runner = FindObjectOfType<NetworkRunner>();
             if (runner != null && !runner.IsShutdown)
             {

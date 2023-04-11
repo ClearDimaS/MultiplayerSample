@@ -10,5 +10,8 @@ namespace MS.GameSession
         public void AddPlayer(IPlayer player);
 
         public void RemovePlayer(IPlayer player);
+        public void MarkPlayerDead(IPlayer player);
+
+        public IPlayer[] GetAlivePlayers();
     }
 }

@@ -1,4 +1,5 @@
 using MS.Core;
+using MS.GameSession;
 using MS.Level;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MS.App
 
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<GameData>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<LevelManager>().FromComponentInNewPrefab(levelManager).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SceneChanger>().AsSingle().NonLazy();
         }
