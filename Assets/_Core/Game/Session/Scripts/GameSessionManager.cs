@@ -57,12 +57,6 @@ namespace MS.GameSession
 
         public void SpawnPlayer(NetworkRunner runner, PlayerRef playerref)
         {
-            if (PlayState == PlayState.MATCH)
-            {
-                Debug.Log("Not Spawning Player - game has already started");
-                return;
-            }
-
             runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, playerref, InitNetworkState);
             void InitNetworkState(NetworkRunner runner, NetworkObject networkObject)
             {

@@ -44,11 +44,17 @@ namespace MS.Player
         public void SetLeft(bool active, Vector2 down, Vector2 current)
         {
             SetJoy(_leftJoy, _leftKnob, active, down, current);
+#if UNITY_EDITOR
+            _leftJoy.gameObject.SetActive(false);
+#endif
         }
 
         public void SetRight(bool active, Vector2 down, Vector2 current)
         {
             SetJoy(_rightJoy, _rightKnob, active, down, current);
+#if UNITY_EDITOR
+            _rightJoy.gameObject.SetActive(false);
+#endif
         }
     }
 }

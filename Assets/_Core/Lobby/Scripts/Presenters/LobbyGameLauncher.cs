@@ -108,6 +108,7 @@ namespace MS.Lobby
 
         private void OnSpawnPlayer(NetworkRunner runner, PlayerRef playerref)
         {
+			Debug.Log($"on spawn player: {playerref.PlayerId}");
 			gameSessionManager.SpawnPlayer(runner, playerref);
         }
 

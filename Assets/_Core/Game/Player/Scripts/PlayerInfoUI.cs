@@ -14,7 +14,7 @@ namespace MS.Player
 
         private void Update()
         {
-            healthAmmount.fillAmount = player.life / Player.MAX_HEALTH;
+            healthAmmount.fillAmount = (float)(int)player.life / (float)(int)Player.MAX_HEALTH;
             coinsText.text = player.coins.ToString();
         }
     }

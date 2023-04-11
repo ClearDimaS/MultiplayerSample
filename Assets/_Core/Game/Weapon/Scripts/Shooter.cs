@@ -13,6 +13,8 @@ namespace MS.Player
         [Networked]
         public TickTimer fireDelay { get; set; }
 
+        public Vector3 WorldPosition => weapon.transform.position;
+
         public void FireWeapon()
         {
             TickTimer tickTimer = fireDelay;

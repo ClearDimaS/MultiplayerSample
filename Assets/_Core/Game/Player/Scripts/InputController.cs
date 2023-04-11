@@ -125,7 +125,7 @@ namespace MS.Player
                     }
                 }
 
-                Vector3 aimDirection = _player.transform.forward;
+                Vector3 aimDirection = mouseCollisionPoint - _player.Shooter.WorldPosition;
                 _aimDelta = new Vector2(aimDirection.x, aimDirection.z);
             }
             else if (Input.touchSupported)
